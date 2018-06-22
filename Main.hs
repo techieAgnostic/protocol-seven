@@ -2,6 +2,7 @@ module Main2 where
 
 import System.Random
 import Data.List
+import Data.Maybe
 import Packs
 
 data Timestamp = Ts Integer Integer Integer
@@ -125,17 +126,20 @@ getPreview n (l, p, b, r)
       packsChange = diffRot nl l
       (nl, _, _, _) = newRotation (l, p, b, r)
 
-cleanMaybe :: BigBox -> [String]
-cleanMaybe (Bb (Just x)) = [x]
-cleanMaybe (Bb Nothing) = []
+printLegal :: State -> [String]
+printLegal (l, p, b, r) = [
+     "Evergreen: Revised Core Set x3"
+   , "Deluxes  : " ++ (intercalate ", " $ sort $ catMaybes (tail $ map (\(Bb x) -> x) b))
+   , "Datapacks: " ++ (intercalate ", " $ sort $ map (\(Dp n _) -> n) l)
+   ]
 
 printPreview :: Preview -> [String]
-printPreview (i, o, bi, bo) = [
+printPreview (i, o, (Bb bi), (Bb bo)) = [
      ("In : " ++ (intercalate ", " $ (cleanDP i) ++ cbi))
    , ("Out: " ++ (intercalate ", " $ (cleanDP o) ++ cbo))
    ]      
    where
       rmEmp = filter (/="")
-      cbi = cleanMaybe bi
-      cbo = cleanMaybe bo
+      cbi = catMaybes [bi]
+      cbo = catMaybes [bo]
       cleanDP = map (\(Dp n _) -> n)
