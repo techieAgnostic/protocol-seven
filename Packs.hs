@@ -1,6 +1,5 @@
 module Packs where
 
-
 bigBoxes :: [String]
 bigBoxes = [
      "Creation and Control"
