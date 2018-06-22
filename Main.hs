@@ -137,7 +137,8 @@ printLegal (l, p, b, r) = [
 
 printPreview :: Maybe Preview -> [String]
 printPreview (Just (i, o, (Bb bi), (Bb bo))) = [
-     ("In : " ++ (intercalate ", " $ (cleanDP i) ++ cbi))
+     "Upcoming Changes:"
+   , ("In : " ++ (intercalate ", " $ (cleanDP i) ++ cbi))
    , ("Out: " ++ (intercalate ", " $ (cleanDP o) ++ cbo))
    ]      
    where
