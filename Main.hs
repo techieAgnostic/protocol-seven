@@ -1,8 +1,10 @@
-module Main2 where
+module Main where
 
 import System.Random
 import Data.List
 import Data.Maybe
+import Data.Time.Clock
+import Data.Time.Calendar
 import Packs
 
 data Timestamp = Ts Integer Integer Integer
@@ -133,8 +135,8 @@ printLegal (l, p, b, r) = [
    , "Datapacks: " ++ (intercalate ", " $ sort $ map (\(Dp n _) -> n) l)
    ]
 
-printPreview :: Preview -> [String]
-printPreview (i, o, (Bb bi), (Bb bo)) = [
+printPreview :: Maybe Preview -> [String]
+printPreview (Just (i, o, (Bb bi), (Bb bo))) = [
      ("In : " ++ (intercalate ", " $ (cleanDP i) ++ cbi))
    , ("Out: " ++ (intercalate ", " $ (cleanDP o) ++ cbo))
    ]      
@@ -143,3 +145,15 @@ printPreview (i, o, (Bb bi), (Bb bo)) = [
       cbi = catMaybes [bi]
       cbo = catMaybes [bo]
       cleanDP = map (\(Dp n _) -> n)
+printPreview Nothing = []
+
+toTS :: (Integer, Int, Int) -> Timestamp
+toTS (y,m,d) = Ts (fromIntegral d) (fromIntegral m) y
+
+main :: IO ()
+main = do
+   t <- getCurrentTime >>= return . toGregorian . utctDay
+   let ts = toTS t
+   let state = getCurrentRotation ts
+   let out = (printLegal state) ++ [""] ++ (printPreview $ getPreview ts state)
+   mapM_ putStrLn $ out
