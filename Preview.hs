@@ -28,5 +28,3 @@ printPreview (Just (i, o, (Bb bi), (Bb bo))) = [
       cleanDP = map (\(Dp n _) -> n)
 printPreview Nothing = []
 
-toTS :: (Integer, Int, Int) -> Timestamp
-toTS (y,m,d) = Ts (fromIntegral d) (fromIntegral m) y

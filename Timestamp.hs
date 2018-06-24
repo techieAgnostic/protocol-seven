@@ -1,5 +1,7 @@
 module Timestamp where
 
+data Timestamp = Ts Integer Integer Integer deriving Show
+
 isPreviewSeason :: Timestamp -> Bool
 isPreviewSeason (Ts x _ _) = x >= 20
 

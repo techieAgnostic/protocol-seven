@@ -1,11 +1,16 @@
 module State where
 
-data Timestamp = Ts Integer Integer Integer
+import System.Random
+import Packs
 
 type State = (Pool, BoxQueue, StdGen)
 
-data InRot = Ir DataPack
+data InRot = Ir DataPack deriving Show
+
 data OutRot = Or DataPack Integer
+instance Eq OutRot where
+   (Or d1 _) == (Or d2 _) = d1 == d2
+
 data BoxQueue = Bq [Maybe BigBox]
 
 type Pool = ([InRot], [OutRot])
