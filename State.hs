@@ -5,7 +5,7 @@ import Packs
 
 type State = (Pool, BoxQueue, StdGen)
 
-data InRot = Ir DataPack deriving Show
+data InRot = Ir DataPack deriving (Show, Eq)
 
 data OutRot = Or DataPack Integer
 instance Eq OutRot where

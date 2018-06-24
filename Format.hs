@@ -53,9 +53,6 @@ rotate n xs = take lxs . drop ((fromIntegral n) `mod` lxs) . cycle $ xs
 rotateBox :: BoxQueue -> BoxQueue
 rotateBox (Bq x) = Bq $ rotate 1 x
 
-changes :: Eq a => [a] -> [a] -> [a]
-changes x y = filter (\n -> not $ n `elem` y) x
-
 strictApplyN :: Integer -> (a -> a) -> a -> a
 strictApplyN 0 _ x = x
 strictApplyN n f x = strictApplyN (n - 1) f $! (f x)

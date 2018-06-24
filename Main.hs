@@ -7,20 +7,15 @@ import Packs
 import State
 import Format
 import Timestamp
+import Preview
 
 main :: IO ()
 main = do
    t <- getCurrentTime >>= return . toGregorian . utctDay
-   mapM_ putStrLn $ showState (currentFormat $ toTS t)
+   let ts = toTS t
+   let state = currentFormat ts
+   let out = (printLegal state) ++ [""] ++ (printPreview $ getPreview ts)
+   mapM_ putStrLn $ out
 
 toTS :: (Integer, Int, Int) -> Timestamp
 toTS (y,m,d) = Ts (fromIntegral d) (fromIntegral m) y
-
-showState :: State -> [String]
-showState ((i, o), (Bq b), _) =
-   [
-        "Legal Packs:\n" ++ concat (map (\(Ir n) -> "   " ++ show n ++ "\n") i)
-      , "Legal Boxes:\n" ++ concat (map (\x -> "   " ++ show x ++ "\n") (catMaybes $ tail b))
-      , "Rotated Packs:\n" ++ concat (map (\(Or n _) -> "   " ++ show n ++ "\n") o)
-      , "Rotated Boxes:\n" ++ concat (map (\x -> "   " ++ show x ++ "\n") (catMaybes $ [head b]))
-   ]
