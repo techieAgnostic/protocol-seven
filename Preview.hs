@@ -21,7 +21,7 @@ diffRot c f = (packIn, packOut)
 
 getPreview :: Timestamp -> Maybe Preview
 getPreview n
-   | isPreviewSeason n = Just $ (fst packsChange, snd packsChange, head (rotate 1 b), head b)
+   | isPreviewSeason n = Just $ (fst packsChange, snd packsChange, head b, head (rotate 1 b))
    | otherwise = Nothing
    where
       ((i,o), (Bq b), r) = currentFormat n
