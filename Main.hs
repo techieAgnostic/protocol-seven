@@ -45,7 +45,7 @@ getHomeR = do
       <h1>CHHF - A Dunedin Netrunner Format
       <h2>About
       <p>The Chris Hay Honourary Format, a post-cancellation Netrunner format. #
-         The format consists of 18 packs at any time, and between 6 and 7 big boxes. #
+         The format consists of 18 packs at any time, and between 5 and 6 big boxes. #
          The following rotation rules are in place:
       <ul>
          <li> Each month, the two packs that have been in rotation longest are rotated out, and two random packs are rotated in
