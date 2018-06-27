@@ -64,6 +64,7 @@ getHomeR = defaultLayout $ do
          font-family: 'Inconsolata', monospace;
          margin: 0px;
          padding: 0px;
+         text-size-adjust: none;
       }
 
       body {
