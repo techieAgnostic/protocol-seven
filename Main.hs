@@ -112,6 +112,7 @@ getHomeR = defaultLayout $ do
 
       ul {
          text-align: initial;
+         margin: 10px;
       }
 
       .upcomingIn {
@@ -207,7 +208,7 @@ getHomeR = defaultLayout $ do
    |]
 
 main :: IO ()
-main = warp 7280 Chhf
+main = warp 80 Chhf
 
 toTS :: (Integer, Int, Int) -> Timestamp
 toTS (y,m,d) = Ts (fromIntegral d) (fromIntegral m) y
