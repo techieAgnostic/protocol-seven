@@ -1,0 +1,87 @@
+html {
+   color: #FFFFFF;
+   background-color: #222222;
+   font-family: 'Inconsolata', monospace;
+   margin: 0px;
+   padding: 0px;
+}
+
+body {
+   width: 740px;
+   margin: auto;
+   padding: 20px;
+   text-align: left;
+   border-left: 4px solid white;
+   border-right: 4px solid white;
+}
+
+section {
+   border-top: 4px solid white;
+   padding: 5px;
+}
+
+header {
+   margin: 0px;
+   padding: 5px;
+   border-top: 4px solid white;
+}
+
+.subheading {
+   text-align: center;
+   padding: 5px;
+}
+
+h1 {
+   text-align: center;
+   margin: 0px;
+   padding: 5px;
+}
+
+p,h2,h3 {
+   margin: 0px;
+   padding: 5px; 
+}
+
+ul {
+   text-align: initial;
+}
+
+.current {
+   width: 600px;
+}
+
+.currentFormat {
+   margin: auto;
+   padding: 1px;
+}
+
+.currentLeft {
+   width: 300px;
+   float: left;
+}
+
+.currentRight {
+   margin-left: 300px;
+}
+
+.upcoming {
+   width: 600px;
+}
+
+.changes {
+   margin: auto;
+   padding: 1px;
+}
+
+.upcomingIn {
+   color: #00DD00;
+   background-color: inherit;
+   width: 300px;
+   float: left;
+}
+
+.upcomingOut {
+   color: #DD0000;
+   background-color: inherit;
+   margin-left: 300px;
+}
