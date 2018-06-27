@@ -150,7 +150,7 @@ getHomeR = defaultLayout $ do
    toWidgetBody [hamlet|
       <header>
          <h1>Protocol Seven
-         <p class="subheading">(Formerly the <em>Chris Hay Honourary Format</em>)</p>
+         <p class="subheading">Always Be Running</p>
    |]
    toWidgetBody [hamlet|
       <section class="rotation">
