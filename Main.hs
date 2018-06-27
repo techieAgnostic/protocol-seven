@@ -68,7 +68,8 @@ getHomeR = defaultLayout $ do
       }
 
       body {
-         width: 740px;
+         min-width: 400px;
+         max-width: 600px;
          margin: auto;
          padding: 20px;
          text-align: left;
@@ -81,7 +82,7 @@ getHomeR = defaultLayout $ do
          padding: 5px;
       }
 
-      header {
+      header, footer {
          margin: 0px;
          padding: 5px;
          border-top: 4px solid white;
@@ -103,48 +104,24 @@ getHomeR = defaultLayout $ do
          padding: 5px; 
       }
 
+      .flexboxcontainer {
+         display: flex;
+         flex-direction: row;
+         flex-wrap: wrap;
+      }
+
       ul {
          text-align: initial;
-      }
-
-      .current {
-         width: 600px;
-      }
-
-      .currentFormat {
-         margin: auto;
-         padding: 1px;
-      }
-
-      .currentLeft {
-         width: 300px;
-         float: left;
-      }
-
-      .currentRight {
-         margin-left: 300px;
-      }
-
-      .upcoming {
-         width: 600px;
-      }
-
-      .changes {
-         margin: auto;
-         padding: 1px;
       }
 
       .upcomingIn {
          color: #00DD00;
          background-color: inherit;
-         width: 300px;
-         float: left;
       }
 
       .upcomingOut {
          color: #DD0000;
          background-color: inherit;
-         margin-left: 300px;
       }
    |]
    addScriptRemote "https://fonts.googleapis.com/css?family=Inconsolata"
@@ -155,40 +132,38 @@ getHomeR = defaultLayout $ do
    |]
    toWidgetBody [hamlet|
       <section class="rotation">
-         <div class="current">
-            <h2>Format for #{showMonth month} #{year}:
-            <div class="currentFormat">
-               <div class="currentLeft">
-                  <h3>Evergreen:
-                  <ul>
-                     <li>Revised Core Set x3
-                  <h3>Big Boxes:
-                  <ul>
-                     $forall bb <- bbout
-                        <li>#{bb}
-               <div class="currentRight">
-                  <h3>Data-packs:
-                  <ul>
-                     $forall dp <- dpout
-                        <li>#{dp}
-         <div class="upcoming">
-            <h2>Upcoming Changes for #{showMonth nextMonth} #{year}:
+         <h2>Format for #{showMonth month} #{year}:
+         <div class="flexboxcontainer">
+            <div class="rotationLeft">
+               <h3>Evergreen:
+               <ul>
+                  <li>Revised Core Set x3
+               <h3>Big Boxes:
+               <ul>
+                  $forall bb <- bbout
+                     <li>#{bb}
+            <div class="rotationRight">
+               <h3>Data-packs:
+               <ul>
+                  $forall dp <- dpout
+                     <li>#{dp}
+         <h2>Upcoming Changes for #{showMonth nextMonth} #{year}:
+         <div class="flexboxcontainer">
             $maybe (pin, pout, pbin, pbout) <- pr
-               <div class="changes">
-                  <div class="upcomingIn">
-                     <h3>In:
-                     <ul>
-                        $maybe pbbin <- pbin
-                           <li>+ #{show pbbin}
-                        $forall indp <- pin
-                           <li>+ #{show indp}
-                  <div class="upcomingOut">
-                     <h3>Out:
-                     <ul>
-                        $maybe pbbout <- pbout
-                           <li>- #{show pbbout}
-                        $forall outdp <- pout
-                           <li>- #{show outdp}
+               <div class="upcomingIn">
+                  <h3>In:
+                  <ul>
+                     $maybe pbbin <- pbin
+                        <li>+ #{show pbbin}
+                     $forall indp <- pin
+                        <li>+ #{show indp}
+               <div class="upcomingOut">
+                  <h3>Out:
+                  <ul>
+                     $maybe pbbout <- pbout
+                        <li>- #{show pbbout}
+                     $forall outdp <- pout
+                        <li>- #{show outdp}
             $nothing
                <h3>Coming soon!
    |]
@@ -224,9 +199,15 @@ getHomeR = defaultLayout $ do
             <li>On the 20th of every month, a preview of the next months format will be shown
             <li><del>No matter what the currently legal packs are, Door to Door (Escalation #59) will always be legal</del>
    |]
+   toWidgetBody [hamlet|
+      <footer>
+         <p>Shaun Kerr (techieAgnostic) - shaundavidkerr@gmail.com
+         <p>Credit to Chris Hay
+         <p><em>Powered by Haskell - Minimally Tested</em>
+   |]
 
 main :: IO ()
-main = warp 80 Chhf
+main = warp 7280 Chhf
 
 toTS :: (Integer, Int, Int) -> Timestamp
 toTS (y,m,d) = Ts (fromIntegral d) (fromIntegral m) y
