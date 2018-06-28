@@ -14,7 +14,7 @@ import Preview
 import Yesod
 import Config
 
-data Chhf = Chhf
+data ProtocolSeven = ProtocolSeven
 
 io :: MonadIO io => IO a -> io a
 io = liftIO
@@ -22,11 +22,11 @@ io = liftIO
 putStrLnIO :: MonadIO io => String -> io ()
 putStrLnIO = io . putStrLn
 
-mkYesod "Chhf" [parseRoutes|
+mkYesod "ProtocolSeven" [parseRoutes|
 / HomeR GET
 |]
 
-instance Yesod Chhf
+instance Yesod ProtocolSeven
 
 inBoth :: (Eq a) => [a] -> [a] -> [a]
 inBoth x y = filter (\n -> n `elem` y) x
@@ -208,7 +208,7 @@ getHomeR = defaultLayout $ do
    |]
 
 main :: IO ()
-main = warp 80 Chhf
+main = warp 80 ProtocolSeven
 
 toTS :: (Integer, Int, Int) -> Timestamp
 toTS (y,m,d) = Ts (fromIntegral d) (fromIntegral m) y
