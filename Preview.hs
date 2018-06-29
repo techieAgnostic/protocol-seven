@@ -9,6 +9,10 @@ import Format
 
 type Preview = ([DataPack], [DataPack], Maybe BigBox, Maybe BigBox)
 
+extractPreview :: Maybe Preview -> ([DataPack],[DataPack],Maybe BigBox, Maybe BigBox)
+extractPreview Nothing = ([],[],Nothing, Nothing)
+extractPreview (Just (i,o,ib,ob)) = (i,o,ib,ob)
+
 changes :: Eq a => [a] -> [a] -> [a]
 changes x y = filter (\n -> not $ n `elem` y) x
 

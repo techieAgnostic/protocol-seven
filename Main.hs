@@ -13,6 +13,7 @@ import Timestamp
 import Preview
 import Yesod
 import Config
+import Nrdb
 
 data ProtocolSeven = ProtocolSeven
 
@@ -56,6 +57,10 @@ getHomeR = defaultLayout $ do
    let bbout = map show $ catMaybes $ inBoth (bx ib) (tail $ bx b)
    let dpout = sort $ map show $ map (\(Ir n) -> n) i
    let pr = getPreview ts
+   let (pdi,pdo,bbi,bbo) = extractPreview pr
+   let nrdbFormat = nrdbSearch (((map (\(Ir n) -> n) i) ++ (map (\(Or n _) -> n) o)),(catMaybes (bx b)))
+   let nrdbIn = nrdbSearch (pdi,catMaybes [bbi])
+   let nrdbOut = nrdbSearch (pdo,catMaybes [bbo])
    setTitle "Protocol Seven"
    toWidget [lucius|
       html {
@@ -108,6 +113,7 @@ getHomeR = defaultLayout $ do
          display: flex;
          flex-direction: row;
          flex-wrap: wrap;
+         padding: 10px;
       }
 
       ul {
@@ -134,6 +140,7 @@ getHomeR = defaultLayout $ do
    toWidgetBody [hamlet|
       <section class="rotation">
          <h2>Format for #{showMonth month} #{year}:
+         <a href=#{nrdbFormat}>Click Here for NetrunnerDB
          <div class="flexboxcontainer">
             <div class="rotationLeft">
                <h3>Evergreen:
@@ -153,6 +160,7 @@ getHomeR = defaultLayout $ do
             $maybe (pin, pout, pbin, pbout) <- pr
                <div class="upcomingIn">
                   <h3>In:
+                  <a href=#{nrdbIn}>Click Here for NetrunnerDB
                   <ul>
                      $maybe pbbin <- pbin
                         <li>+ #{show pbbin}
@@ -160,6 +168,7 @@ getHomeR = defaultLayout $ do
                         <li>+ #{show indp}
                <div class="upcomingOut">
                   <h3>Out:
+                  <a href=#{nrdbOut}>Click Here for NetrunnerDB
                   <ul>
                      $maybe pbbout <- pbout
                         <li>- #{show pbbout}
