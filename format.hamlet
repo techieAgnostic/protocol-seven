@@ -1,6 +1,5 @@
 <section class="rotation">
-   <h2>Format for #{showMonth month} #{year}:
-   <a href=#{nrdbFormat}>Click Here for NetrunnerDB
+   <h2>Format for #{showMonth month} #{year}: <a href=#{nrdbFormat}>NRDB</a>
    <div class="flexboxcontainer">
       <div class="rotationLeft">
          <h3>Evergreen:
@@ -19,16 +18,14 @@
    <div class="flexboxcontainer">
       $maybe (pin, pout, pbin, pbout) <- pr
          <div class="upcomingIn">
-            <h3>In:
-            <a href=#{nrdbIn}>Click Here for NetrunnerDB
+            <h3>In: <a href=#{nrdbIn}>NRDB</a>
             <ul>
                $maybe pbbin <- pbin
                   <li>+ #{show pbbin}
                $forall indp <- pin
                   <li>+ #{show indp}
          <div class="upcomingOut">
-            <h3>Out:
-            <a href=#{nrdbOut}>Click Here for NetrunnerDB
+            <h3>Out: <a href=#{nrdbOut}>NRDB</a>
             <ul>
                $maybe pbbout <- pbout
                   <li>- #{show pbbout}

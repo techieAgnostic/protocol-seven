@@ -51,6 +51,14 @@ p,h2,h3 {
    padding: 10px;
 }
 
+a:link {
+   color: cornflowerblue
+}
+
+a:visited {
+   color: mediumpurple
+}
+
 ul {
    text-align: initial;
    margin: 10px;

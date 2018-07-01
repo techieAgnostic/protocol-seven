@@ -2,8 +2,7 @@
 
 module Main where
 
-import Data.Time.Clock
-import Data.Time.Calendar
+import Data.Time
 import Data.List
 import Data.Maybe
 import Packs
@@ -33,19 +32,29 @@ instance Yesod ProtocolSeven
 
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
-   (year, month, day) <- io $ getCurrentTime >>= return . toGregorian . utctDay
+   -- Date / Time stuff
+   sTimeDate <- io $ getZonedTime >>= return . (formatTime defaultTimeLocale "%y %m %d")
+   let (year, month, day) = (\[a,b,c] -> (a,b,c)) $ map (\x -> read x :: Integer) $ words sTimeDate
    let nextMonth = (month + 1) `mod` 12
    let ts = toTS (year, month, day)
+
+   -- Release Order Big Boxes
+   let (_,ib,_) = initialRotation
+
+   -- Current Format
    let ((i,o),b,r) = currentFormat ts
    let bx = (\(Bq x) -> x)
-   let (_,ib,_) = initialRotation
    let bbout = map show $ catMaybes $ inBoth (bx ib) (tail $ bx b)
-   let dpout = sort $ map show $ map (\(Ir n) -> n) i
+   let dpout = sort $ map show $ map (\(Ir n) -> n) i 
+
+   -- Preview
    let pr = getPreview ts
    let (pdi,pdo,bbi,bbo) = extractPreview pr
    let nrdbFormat = nrdbSearch (((map (\(Ir n) -> n) i) ++ (map (\(Or n _) -> n) o)),(catMaybes (bx b)))
    let nrdbIn = nrdbSearch (pdi,catMaybes [bbi])
    let nrdbOut = nrdbSearch (pdo,catMaybes [bbo])
+
+   -- Build Site
    setTitle "Protocol Seven"
    addScriptRemote "https://fonts.googleapis.com/css?family=Inconsolata"
    toWidget $(whamletFile "header.hamlet")

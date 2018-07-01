@@ -7,8 +7,8 @@ nrdbSearch :: ([DataPack], [BigBox]) -> String
 nrdbSearch (d, b) =
    "https://netrunnerdb.com/find/?q=e%3A" ++
    intercalate "%7C" (
-      (map nrdbPackCodes d) ++
-      (map nrdbBoxCodes b)
+      sort ((map nrdbPackCodes d) ++
+      (map nrdbBoxCodes b))
    )
 
 nrdbPackCodes :: DataPack -> String

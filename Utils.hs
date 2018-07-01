@@ -3,7 +3,7 @@ module Utils where
 inBoth :: (Eq a) => [a] -> [a] -> [a]
 inBoth x y = filter (\n -> n `elem` y) x
 
-showMonth :: Int -> String
+showMonth :: Integer -> String
 showMonth 1 = "January"
 showMonth 2 = "February"
 showMonth 3 = "March"
