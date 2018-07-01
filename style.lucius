@@ -1,0 +1,67 @@
+html {
+   color: #FFFFFF;
+   background-color: #222222;
+   font-family: 'Inconsolata', monospace;
+   margin: 0px;
+   padding: 0px;
+   text-size-adjust: none;
+}
+
+body {
+   min-width: 400px;
+   max-width: 600px;
+   margin: auto;
+   padding: 20px;
+   text-align: left;
+   border-left: 4px solid white;
+   border-right: 4px solid white;
+}
+
+section {
+   border-top: 4px solid white;
+   padding: 5px;
+}
+
+header, footer {
+   margin: 0px;
+   padding: 5px;
+   border-top: 4px solid white;
+}
+
+.subheading {
+   text-align: center;
+   padding: 5px;
+}
+
+h1 {
+   text-align: center;
+   margin: 0px;
+   padding: 5px;
+}
+
+p,h2,h3 {
+   margin: 0px;
+   padding: 5px; 
+}
+
+.flexboxcontainer {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   padding: 10px;
+}
+
+ul {
+   text-align: initial;
+   margin: 10px;
+}
+
+.upcomingIn {
+   color: #00DD00;
+   background-color: inherit;
+}
+
+.upcomingOut {
+   color: #DD0000;
+   background-color: inherit;
+}

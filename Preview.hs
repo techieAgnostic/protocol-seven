@@ -6,15 +6,13 @@ import Packs
 import State
 import Timestamp
 import Format
+import Utils
 
 type Preview = ([DataPack], [DataPack], Maybe BigBox, Maybe BigBox)
 
 extractPreview :: Maybe Preview -> ([DataPack],[DataPack],Maybe BigBox, Maybe BigBox)
 extractPreview Nothing = ([],[],Nothing, Nothing)
 extractPreview (Just (i,o,ib,ob)) = (i,o,ib,ob)
-
-changes :: Eq a => [a] -> [a] -> [a]
-changes x y = filter (\n -> not $ n `elem` y) x
 
 diffRot :: [InRot] -> [InRot] -> ([DataPack], [DataPack])
 diffRot c f = (packIn, packOut)

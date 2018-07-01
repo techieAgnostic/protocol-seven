@@ -19,3 +19,6 @@ monthsSince (Ts d1 m1 y1) (Ts d2 m2 y2)
    where
       t1 = Ts d1 m1 y1
       t2 = Ts d2 m2 y2
+
+toTS :: (Integer, Int, Int) -> Timestamp
+toTS (y,m,d) = Ts (fromIntegral d) (fromIntegral m) y

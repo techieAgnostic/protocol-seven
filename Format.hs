@@ -4,6 +4,7 @@ import System.Random
 import State
 import Timestamp
 import Config
+import Utils
 
 currentFormat :: Timestamp -> State
 currentFormat t = strictApplyN n nextFormat initialRotation
@@ -45,14 +46,5 @@ addNewPack ((i, o), r) = ((ni, no), nr)
       ni = i ++ [(setLegal np)]
       no = filter (\x -> x /= np) o
 
-rotate :: Integer -> [a] -> [a]
-rotate n xs = take lxs . drop ((fromIntegral n) `mod` lxs) . cycle $ xs
-   where
-      lxs = length xs
-
 rotateBox :: BoxQueue -> BoxQueue
 rotateBox (Bq x) = Bq $ rotate 1 x
-
-strictApplyN :: Integer -> (a -> a) -> a -> a
-strictApplyN 0 _ x = x
-strictApplyN n f x = strictApplyN (n - 1) f $! (f x)

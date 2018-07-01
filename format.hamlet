@@ -1,0 +1,38 @@
+<section class="rotation">
+   <h2>Format for #{showMonth month} #{year}:
+   <a href=#{nrdbFormat}>Click Here for NetrunnerDB
+   <div class="flexboxcontainer">
+      <div class="rotationLeft">
+         <h3>Evergreen:
+         <ul>
+            <li>Revised Core Set x3
+         <h3>Big Boxes:
+         <ul>
+            $forall bb <- bbout
+               <li>#{bb}
+      <div class="rotationRight">
+         <h3>Data-packs:
+         <ul>
+            $forall dp <- dpout
+               <li>#{dp}
+   <h2>Upcoming Changes for #{showMonth nextMonth} #{year}:
+   <div class="flexboxcontainer">
+      $maybe (pin, pout, pbin, pbout) <- pr
+         <div class="upcomingIn">
+            <h3>In:
+            <a href=#{nrdbIn}>Click Here for NetrunnerDB
+            <ul>
+               $maybe pbbin <- pbin
+                  <li>+ #{show pbbin}
+               $forall indp <- pin
+                  <li>+ #{show indp}
+         <div class="upcomingOut">
+            <h3>Out:
+            <a href=#{nrdbOut}>Click Here for NetrunnerDB
+            <ul>
+               $maybe pbbout <- pbout
+                  <li>- #{show pbbout}
+               $forall outdp <- pout
+                  <li>- #{show outdp}
+      $nothing
+         <h3>Coming soon!
