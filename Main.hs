@@ -33,7 +33,7 @@ instance Yesod ProtocolSeven
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
    -- Date / Time stuff
-   sTimeDate <- io $ getZonedTime >>= return . (formatTime defaultTimeLocale "%y %m %d")
+   sTimeDate <- io $ getZonedTime >>= return . (formatTime defaultTimeLocale "%Y %m %d")
    let (year, month, day) = (\[a,b,c] -> (a,b,c)) $ map (\x -> read x :: Integer) $ words sTimeDate
    let nextMonth = (month + 1) `mod` 12
    let ts = toTS (year, month, day)
