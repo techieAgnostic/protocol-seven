@@ -22,12 +22,3 @@ monthsSince (Ts d1 m1 y1) (Ts d2 m2 y2)
 
 toTS :: (Integer, Integer, Integer) -> Timestamp
 toTS (y,m,d) = Ts d m y
-
-getCurrentTime :: IO [Char]
-getCurrentTime = getZonedTime
-   >>= return . (formatTime defaultTimeLocale "%Y %m %d")
-
-fmtCurrentTime :: [Char] -> (Integer, Integer, Integer)
-fmtCurrentTime n = (\[a,b,c] -> (a,b,c)) iTime
-   where
-      iTime = map (\x -> read x :: Integer) $ words n

@@ -1,0 +1,37 @@
+<h1>$title$: $nrdbUrl$</h1>
+
+<h2>Evergreen</h2>
+<ul>
+   <li>3x Revised Core Set</li>
+</ul>
+
+<h2>Big Boxes</h2>
+<ul>
+   $for(bboxes)$
+      <li>$title$</li>
+   $endfor$
+</ul>
+
+<h2>Datapacks</h2>
+<ul>
+   $for(dpacks)$
+      <li>$title$</li>
+   $endfor$
+</ul>
+
+<h1>Upcoming Changes</h1>
+
+$if(ucin)$
+   <ul>
+      $for(ucin)$
+         <li>+ $title$</li>
+      $endfor$
+   </ul>
+   <ul>
+      $for(ucout)$
+         <li>- $title$</li>
+      $endfor$
+   </ul>
+$else$
+   <h3>Coming Soon!</h3>
+$endif$
