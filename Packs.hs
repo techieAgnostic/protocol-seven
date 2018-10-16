@@ -1,5 +1,14 @@
 module Packs where
 
+{---
+ - Pack Module
+ -
+ - Defines datatypes for each pack and I totally didn't
+ - hand code this nuh-uh for real
+ -
+ - Shaun Kerr
+ -}
+
 data BigBox =
    Cc | Hp | Oc | Dd | Td | Rr deriving Eq
 

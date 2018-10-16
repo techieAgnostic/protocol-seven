@@ -47,10 +47,12 @@ ctx = defaultContext <>
 
 -- Default context for format
 fmtCtx :: Integer -> Integer -> String -> Context String
-fmtCtx m y u =
+fmtCtx m y u dps bbs =
    (titleField mTitle) <>
    (field "nrdbUrl" u) <>
-   (listFieldWith 
+   (listField "dpacks" (
+      field "dp" (return .
+                        )
    ctx
    where
       mTitle = "Format for " ++ (showMonth m) ++ " " ++ y

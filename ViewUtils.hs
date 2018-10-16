@@ -1,5 +1,14 @@
 module ViewUtils where
 
+{---
+ - ViewUtils Module
+ -
+ - Your guess is as good as mine why this is its own thing
+ - gotta get the month I guess
+ -
+ - Shaun Kerr
+ -}
+
 import Timestamp
 
 showMonth :: Integer -> String
@@ -15,5 +24,3 @@ showMonth 9 = "September"
 showMonth 10 = "October"
 showMonth 11 = "November"
 showMonth 12 = "December"
-
-

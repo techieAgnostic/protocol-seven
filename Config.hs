@@ -1,19 +1,34 @@
 module Config where
 
+{---
+ - Config Module
+ -
+ - Contains settings that will effect the running of the program
+ -
+ - Shaun Kerr
+ -}
+
 import System.Random
 import State
 import Timestamp
 import Packs
 
+-- Earliest rotation.
+-- Each format is generated starting from this date.
 genesis :: Timestamp
 genesis = Ts 29 09 1996
 
+-- Initial seed.
+-- Keep it secret. Keep it safe.
 seed :: Int
 seed = 69420
 
+-- Initial RNG
 entropy :: StdGen
 entropy = mkStdGen $ seed
 
+-- Initial rotation.
+-- Simple split in half, genesis leaves plenty of time to shuffle.
 initialRotation :: State
 initialRotation = ((i, o), b, r)
    where
